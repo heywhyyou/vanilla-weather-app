@@ -10,19 +10,48 @@
     <main>
       <section class="app">
         <div class="search">
-          <input type="text" placeholder="Aktobe" />
+          <input type="text" placeholder="Aktobe" class="search__input" />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
-            class="header__search"
+            class="search__icon"
           >
             <use xlink:href="sprite.svg#search-icon"></use>
           </svg>
         </div>
-        <div class="weather">Weather</div>
-        <div class="fav__header">Fav header</div>
-        <div class="fav__locations">Cities list</div>
+        <div class="weather">
+          <p class="degrees">14°</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            class="weather__icon"
+          >
+            <use xlink:href="sprite.svg#cloud-icon"></use>
+          </svg>
+          <div class="footer">
+            <p class="footer__city">Aktobe</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              class="heart__icon"
+            >
+              <use xlink:href="sprite.svg#heart-icon"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="fav__header"><h1>Added Locations:</h1></div>
+        <div class="fav__locations">
+          <ul class="fav__list">
+            <li>Amur</li>
+            <li>Samara</li>
+            <li>Bali</li>
+            <li>Dane</li>
+            <li>Kilo</li>
+          </ul>
+        </div>
       </section>
     </main>
   </body>
