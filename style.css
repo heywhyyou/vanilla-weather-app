@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.app {
+  max-width: 600px;
+  width: 100%;
+  min-height: 360px;
+  border: 1px solid;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1.5fr 5.5fr;
+}
+
+.app > * {
+  border: 1px solid black;
+}
+
+main {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  grid-column: 1 / -1;
+}
+
+.weather {
+  grid-column: 1 / 2;
+  grid-row: 2 / -1;
+}
+
+.fav__header {
+  grid-column: 2 / -1;
+  grid-row: 2 / 3;
+}
