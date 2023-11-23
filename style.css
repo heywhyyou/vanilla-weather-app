@@ -51,7 +51,7 @@ main {
 .search__icon {
   position: absolute;
   right: 15px;
-  top: 8px;
+  top: 16px;
 }
 
 .weather {
@@ -106,4 +106,8 @@ h1 {
 
 .fav__list li:not(.fav__list li:first-child) {
   padding-top: 10px;
+}
+
+button {
+  cursor: pointer;
 }
