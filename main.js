@@ -6,36 +6,28 @@ const button = document.querySelector(".search__button");
 const degrees = document.querySelector(".degrees");
 const city = document.querySelector(".footer__city");
 const weatherIcon = document.querySelector(".weather__icon");
-
-const convertKelvinToCelsius = (num) => Math.round(num - 273.15);
+const form = document.querySelector(".search");
 
 const getWeather = (cityName) => {
-  let url = `${serverUrl}?q=${cityName}&appid=${apiKey}`;
+  let url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
   fetch(url)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      let kelvinTemp = data.main.temp;
-      let celsiusTemp = convertKelvinToCelsius(kelvinTemp);
-      degrees.innerHTML = `${celsiusTemp}&deg;`;
+      degrees.innerHTML = `${Math.round(data.main.temp)}&deg;`;
       city.textContent = cityName;
       weatherIcon.innerHTML = `<image xlink:href='img/svg/${data.weather[0].icon}.svg' width='100%' height='100%' />`;
+      input.value = "";
     })
     .catch((error) => {
       console.error(error);
     });
 };
 
-const buttonClickHandler = () => {
+const submitHandler = (e) => {
+  e.preventDefault();
   getWeather(input.value);
 };
 
-const enterPressHandler = (e) => {
-  if (e.key === "Enter") {
-    getWeather(input.value);
-  }
-};
-
-button.addEventListener("click", buttonClickHandler);
-input.addEventListener("keydown", enterPressHandler);
+form.addEventListener("submit", submitHandler);

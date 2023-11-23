@@ -9,9 +9,9 @@
   <body>
     <main>
       <section class="app">
-        <div class="search">
-          <input type="text" placeholder="Aktobe" class="search__input" />
-          <button class="search__button">
+        <form class="search">
+          <input placeholder="Aktobe" class="search__input" />
+          <button type="submit" class="search__button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -21,17 +21,9 @@
               <use xlink:href="sprite.svg#search-icon"></use>
             </svg>
           </button>
-        </div>
+        </form>
         <div class="weather">
           <p class="degrees">14&deg;</p>
-          <!-- <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="60"
-            height="60"
-            class="weather__icon"
-          >
-            <use xlink:href="sprite.svg#cloud-icon"></use>
-          </svg> -->
           <svg class="weather__icon">
             <image xlink:href="img/svg/04d.svg" width="100%" height="100%" />
           </svg>
