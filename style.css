@@ -13,20 +13,29 @@ html {
 body {
   font-family: Roboto;
   color: black;
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
 }
 
 .app {
   max-width: 600px;
   width: 100%;
   min-height: 360px;
-  border: 1px solid;
+  /* border: 1px solid; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1.5fr 5.5fr;
+  gap: 5px;
 }
 
 .app > * {
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.app > :not(.search__input) {
+  border: 1px solid cyan;
 }
 
 main {
@@ -39,12 +48,15 @@ main {
 .search {
   grid-column: 1 / -1;
   position: relative;
+  overflow: hidden;
 }
 
 .search__input {
   width: 100%;
   height: 100%;
   padding: 10px;
+  outline: none;
+  background-color: rgb(197, 229, 238);
   border: none;
 }
 
