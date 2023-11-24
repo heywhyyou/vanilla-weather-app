@@ -11,15 +11,21 @@ const favs = new Array();
 const heart = document.querySelector(".footer__button");
 const favList = document.querySelector(".fav__list");
 
+const capitalize = (word) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+};
+
 const getWeather = (cityName) => {
-  let url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+  let url = `${serverUrl}?q=${capitalize(
+    cityName
+  )}&appid=${apiKey}&units=metric`;
   fetch(url)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
       degrees.innerHTML = `${Math.round(data.main.temp)}&deg;`;
-      city.textContent = cityName;
+      city.textContent = capitalize(cityName);
       weatherIcon.innerHTML = `<image xlink:href='img/svg/${data.weather[0].icon}.svg' width='100%' height='100%' />`;
       input.value = "";
     })
