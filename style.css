@@ -125,7 +125,27 @@ h1 {
   padding-top: 10px;
 }
 
+.fav__locations {
+  overflow-y: auto;
+  max-height: 308px;
+}
+
 button {
   cursor: pointer;
   border: none;
+  background: inherit;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lnr-cross {
+  margin-right: 18px;
+  font-size: 20px;
+}
+
+.fav-city {
+  cursor: pointer;
 }
