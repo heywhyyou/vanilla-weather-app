@@ -21,11 +21,18 @@ import {
   weatherIcon18,
 } from "./dom-element.js";
 
+import {
+  currentCity,
+  getCurrentCity,
+  storage,
+  storageToArray,
+} from "./storage.js";
+
 const serverUrl = "https://api.openweathermap.org/data/2.5/weather";
 const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast";
 const apiKey = "ef115df48d80a2423e44afb52adf59da";
 
-const favs = new Array();
+export const favs = new Array();
 
 const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
@@ -128,6 +135,7 @@ const addToFavs = (event) => {
       throw new Error("Город уже в избранном");
     }
     favs.push({ name: city.textContent });
+    storage(favs);
     render(event);
   } catch (error) {
     alert(error);
@@ -148,7 +156,7 @@ const removeFav = (event) => {
   deleteFromStorage(event.target.previousElementSibling.textContent);
 
   event.target.removeEventListener("click", removeFav);
-
+  storage(favs);
   render(event);
 };
 
@@ -183,12 +191,19 @@ const submitHandler = (e) => {
   e.preventDefault();
   getWeather(input.value);
   getForecast(input.value);
+  currentCity(input.value);
 };
 
 const favHandler = (e) => {
   getWeather(e.target.textContent);
   getForecast(e.target.textContent);
+  currentCity(e.target.textContent);
 };
 
 form.addEventListener("submit", submitHandler);
 heart.addEventListener("click", addToFavs);
+
+storageToArray();
+render();
+getWeather(getCurrentCity());
+getForecast(getCurrentCity());
