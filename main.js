@@ -1,28 +1,31 @@
+import {
+  input,
+  button,
+  degrees,
+  city,
+  weatherIcon,
+  form,
+  heart,
+  favList,
+  feelsLike,
+  sunrise,
+  sunset,
+  temp12,
+  temp15,
+  temp18,
+  feelsLike12,
+  feelsLike15,
+  feelsLike18,
+  weatherIcon12,
+  weatherIcon15,
+  weatherIcon18,
+} from "./dom-element.js";
+
 const serverUrl = "https://api.openweathermap.org/data/2.5/weather";
 const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast";
 const apiKey = "ef115df48d80a2423e44afb52adf59da";
 
-const input = document.querySelector(".search__input");
-const button = document.querySelector(".search__button");
-const degrees = document.querySelector(".degrees");
-const city = document.querySelector(".header__city");
-const weatherIcon = document.querySelector(".weather__icon");
-const form = document.querySelector(".search");
 const favs = new Array();
-const heart = document.querySelector(".header__button");
-const favList = document.querySelector(".fav__list");
-const feelsLike = document.querySelector(".feels-like");
-const sunrise = document.querySelector(".sunrise");
-const sunset = document.querySelector(".sunset");
-const temp12 = document.querySelector(".temp-12");
-const temp15 = document.querySelector(".temp-15");
-const temp18 = document.querySelector(".temp-18");
-const feelsLike12 = document.querySelector(".feels-like-12");
-const feelsLike15 = document.querySelector(".feels-like-15");
-const feelsLike18 = document.querySelector(".feels-like-18");
-const weatherIcon12 = document.querySelector(".weather__icon-12");
-const weatherIcon15 = document.querySelector(".weather__icon-15");
-const weatherIcon18 = document.querySelector(".weather__icon-18");
 
 const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
