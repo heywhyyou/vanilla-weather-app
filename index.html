@@ -27,13 +27,9 @@
           </button>
         </form>
         <div class="weather">
-          <p class="degrees">14&deg;</p>
-          <svg class="weather__icon">
-            <image xlink:href="img/svg/04d.svg" width="100%" height="100%" />
-          </svg>
-          <div class="footer">
-            <p class="footer__city">Aktobe</p>
-            <button class="footer__button">
+          <div class="header">
+            <p class="header__city">Aktobe</p>
+            <button class="header__button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -44,16 +40,57 @@
               </svg>
             </button>
           </div>
+          <div class="temp-wrapper">
+            <p class="degrees">14&deg;</p>
+            <svg class="weather__icon">
+              <image xlink:href="img/svg/04d.svg" width="100%" height="100%" />
+            </svg>
+          </div>
+          <div class="temp-details">
+            <p>Feels like: 10</p>
+            <p>Sunrise: 03:21</p>
+            <p>Sunset: 18:54</p>
+          </div>
+          <div class="details-wrapper">
+            <div class="temp-hours">
+              <p>12:00</p>
+              <div class="temp-hours__values">
+                <p>Temperature: 13</p>
+                <p>Feels like: 11</p>
+              </div>
+            </div>
+            <svg class="weather__icon">
+              <image xlink:href="img/svg/04d.svg" width="100%" height="100%" />
+            </svg>
+          </div>
+          <div class="details-wrapper">
+            <div class="temp-hours">
+              <p>15:00</p>
+              <div class="temp-hours__values">
+                <p>Temperature: 11</p>
+                <p>Feels like: 10</p>
+              </div>
+            </div>
+            <svg class="weather__icon">
+              <image xlink:href="img/svg/04d.svg" width="100%" height="100%" />
+            </svg>
+          </div>
+          <div class="details-wrapper details-bottom">
+            <div class="temp-hours">
+              <p>18:00</p>
+              <div class="temp-hours__values">
+                <p>Temperature: 11</p>
+                <p>Feels like: 10</p>
+              </div>
+            </div>
+            <svg class="weather__icon">
+              <image xlink:href="img/svg/04d.svg" width="100%" height="100%" />
+            </svg>
+          </div>
         </div>
         <div class="fav__header"><h1>Added Locations:</h1></div>
         <div class="fav__locations">
-          <ul class="fav__list">
-            <!-- <li>Amur</li>
-            <li>Samara</li>
-            <li>Bali</li>
-            <li>Dane</li>
-            <li>Kilo</li> -->
-          </ul>
+          <ul class="fav__list"></ul>
         </div>
       </section>
     </main>

@@ -4,11 +4,11 @@ const apiKey = "ef115df48d80a2423e44afb52adf59da";
 const input = document.querySelector(".search__input");
 const button = document.querySelector(".search__button");
 const degrees = document.querySelector(".degrees");
-const city = document.querySelector(".footer__city");
+const city = document.querySelector(".header__city");
 const weatherIcon = document.querySelector(".weather__icon");
 const form = document.querySelector(".search");
 const favs = new Array();
-const heart = document.querySelector(".footer__button");
+const heart = document.querySelector(".header__button");
 const favList = document.querySelector(".fav__list");
 
 const capitalize = (word) => {
