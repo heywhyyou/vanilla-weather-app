@@ -1,4 +1,5 @@
 const serverUrl = "https://api.openweathermap.org/data/2.5/weather";
+const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast";
 const apiKey = "ef115df48d80a2423e44afb52adf59da";
 
 const input = document.querySelector(".search__input");
@@ -10,6 +11,18 @@ const form = document.querySelector(".search");
 const favs = new Array();
 const heart = document.querySelector(".header__button");
 const favList = document.querySelector(".fav__list");
+const feelsLike = document.querySelector(".feels-like");
+const sunrise = document.querySelector(".sunrise");
+const sunset = document.querySelector(".sunset");
+const temp12 = document.querySelector(".temp-12");
+const temp15 = document.querySelector(".temp-15");
+const temp18 = document.querySelector(".temp-18");
+const feelsLike12 = document.querySelector(".feels-like-12");
+const feelsLike15 = document.querySelector(".feels-like-15");
+const feelsLike18 = document.querySelector(".feels-like-18");
+const weatherIcon12 = document.querySelector(".weather__icon-12");
+const weatherIcon15 = document.querySelector(".weather__icon-15");
+const weatherIcon18 = document.querySelector(".weather__icon-18");
 
 const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
@@ -27,8 +40,71 @@ const getWeather = (cityName) => {
       degrees.innerHTML = `${Math.round(data.main.temp)}&deg;`;
       city.textContent = capitalize(cityName);
       weatherIcon.innerHTML = `<image xlink:href='img/svg/${data.weather[0].icon}.svg' width='100%' height='100%' />`;
+
       input.value = "";
+
+      feelsLike.innerHTML = `Feels like: ${Math.round(
+        data.main.feels_like
+      )}&deg;`;
+
+      const sunriseInMillis = data.sys.sunrise * 1000;
+      const sunsetInMillis = data.sys.sunset * 1000;
+
+      const sunriseDate = new Date(sunriseInMillis);
+      const sunsetDate = new Date(sunsetInMillis);
+
+      const sunriseHours = sunriseDate.getHours();
+      const sunsetHours = sunsetDate.getHours();
+      const sunriseMinutes = sunriseDate.getMinutes();
+      const sunsetMinutes = sunsetDate.getMinutes();
+
+      sunrise.innerHTML = `Sunrise: ${sunriseHours
+        .toString()
+        .padStart(2, "0")}:${sunriseMinutes.toString().padStart(2, "0")}`;
+
+      sunset.innerHTML = `Sunrise: ${sunsetHours
+        .toString()
+        .padStart(2, "0")}:${sunsetMinutes.toString().padStart(2, "0")}`;
     })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const getForecast = (cityName) => {
+  let url = `${forecastUrl}?q=${capitalize(
+    cityName
+  )}&appid=${apiKey}&units=metric`;
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      temp12.innerHTML = `Temperature: ${Math.round(
+        data.list[2].main.temp
+      )}&deg;`;
+      feelsLike12.innerHTML = `Feels like: ${Math.round(
+        data.list[2].main.feels_like
+      )}&deg;`;
+      weatherIcon12.innerHTML = `<image xlink:href='img/svg/${data.list[2].weather[0].icon}.svg' width='100%' height='100%' />`;
+
+      temp15.innerHTML = `Temperature: ${Math.round(
+        data.list[3].main.temp
+      )}&deg;`;
+      feelsLike15.innerHTML = `Feels like: ${Math.round(
+        data.list[3].main.feels_like
+      )}&deg;`;
+      weatherIcon15.innerHTML = `<image xlink:href='img/svg/${data.list[3].weather[0].icon}.svg' width='100%' height='100%' />`;
+
+      temp18.innerHTML = `Temperature: ${Math.round(
+        data.list[4].main.temp
+      )}&deg;`;
+      feelsLike18.innerHTML = `Feels like: ${Math.round(
+        data.list[4].main.feels_like
+      )}&deg;`;
+      weatherIcon18.innerHTML = `<image xlink:href='img/svg/${data.list[4].weather[0].icon}.svg' width='100%' height='100%' />`;
+    })
+
     .catch((error) => {
       console.error(error);
     });
@@ -103,10 +179,12 @@ const render = (event) => {
 const submitHandler = (e) => {
   e.preventDefault();
   getWeather(input.value);
+  getForecast(input.value);
 };
 
 const favHandler = (e) => {
   getWeather(e.target.textContent);
+  getForecast(e.target.textContent);
 };
 
 form.addEventListener("submit", submitHandler);
