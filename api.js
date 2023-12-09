@@ -31,7 +31,6 @@ export const getWeather = (cityName) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
       degrees.innerHTML = `${Math.round(data.main.temp)}&deg;`;
       city.textContent = capitalize(cityName);
       weatherIcon.innerHTML = `<image xlink:href='img/svg/${data.weather[0].icon}.svg' width='100%' height='100%' />`;
@@ -85,8 +84,6 @@ export const getForecast = (cityName) => {
       }
 
       data.list.forEach((item) => {
-        console.log(item);
-
         const html = `
           <div class="details-wrapper">
             <div class="temp-hours">
