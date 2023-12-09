@@ -32,7 +32,7 @@ import { getForecast, getWeather } from "./api.js";
 
 export const favs = new Array();
 
-const capitalize = (word) => {
+export const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
 

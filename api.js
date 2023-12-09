@@ -1,3 +1,5 @@
+import { capitalize } from "./main";
+
 const serverUrl = "https://api.openweathermap.org/data/2.5/weather";
 const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast";
 const apiKey = "ef115df48d80a2423e44afb52adf59da";
