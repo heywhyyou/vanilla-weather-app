@@ -14,7 +14,6 @@ export const storageToArray = () => {
     return;
   }
   const newArr = localStorage.getItem("favCities").split(",");
-  console.log(newArr);
   newArr.map((item) => {
     favs.push({ name: item });
   });
