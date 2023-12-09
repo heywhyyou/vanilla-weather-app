@@ -177,8 +177,7 @@ li {
 .details-wrapper {
   display: flex;
   border-bottom: 1px solid cyan;
-}
-
-.details-bottom {
-  border: none;
+  &:last-child {
+    border: none;
+  }
 }

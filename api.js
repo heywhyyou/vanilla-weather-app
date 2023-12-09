@@ -72,35 +72,44 @@ export const getWeather = (cityName) => {
 export const getForecast = (cityName) => {
   let url = `${forecastUrl}?q=${capitalize(
     cityName
-  )}&appid=${apiKey}&units=metric`;
+  )}&appid=${apiKey}&units=metric&cnt=3`;
   fetch(url)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      temp12.innerHTML = `Temperature: ${Math.round(
-        data.list[2].main.temp
-      )}&deg;`;
-      feelsLike12.innerHTML = `Feels like: ${Math.round(
-        data.list[2].main.feels_like
-      )}&deg;`;
-      weatherIcon12.innerHTML = `<image xlink:href='img/svg/${data.list[2].weather[0].icon}.svg' width='100%' height='100%' />`;
+      const detailsParent = document.querySelector(".details-wrapper-main");
 
-      temp15.innerHTML = `Temperature: ${Math.round(
-        data.list[3].main.temp
-      )}&deg;`;
-      feelsLike15.innerHTML = `Feels like: ${Math.round(
-        data.list[3].main.feels_like
-      )}&deg;`;
-      weatherIcon15.innerHTML = `<image xlink:href='img/svg/${data.list[3].weather[0].icon}.svg' width='100%' height='100%' />`;
+      while (detailsParent.firstChild) {
+        detailsParent.removeChild(detailsParent.firstChild);
+      }
 
-      temp18.innerHTML = `Temperature: ${Math.round(
-        data.list[4].main.temp
-      )}&deg;`;
-      feelsLike18.innerHTML = `Feels like: ${Math.round(
-        data.list[4].main.feels_like
-      )}&deg;`;
-      weatherIcon18.innerHTML = `<image xlink:href='img/svg/${data.list[4].weather[0].icon}.svg' width='100%' height='100%' />`;
+      data.list.forEach((item) => {
+        console.log(item);
+
+        const html = `
+          <div class="details-wrapper">
+            <div class="temp-hours">
+              <p>  ${item.dt_txt.slice(11, 16)} </p>
+              <div class="temp-hours__values">
+                <p class="temp-hours__value">Temperature: ${Math.round(
+                  item.main.temp
+                )}&deg;</p>
+                <p class="feels-like__value">Feels like: ${Math.round(
+                  item.main.feels_like
+                )}&deg;</p>
+              </div>
+            </div>
+            <svg class="weather__icon weather__icon-12">
+              <image xlink:href='img/svg/${
+                item.weather[0].icon
+              }.svg' width='100%' height='100%' />
+            </svg>
+          </div>
+        `;
+
+        detailsParent.insertAdjacentHTML("beforeend", html);
+      });
     })
 
     .catch((error) => {
