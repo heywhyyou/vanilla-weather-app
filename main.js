@@ -72,7 +72,7 @@ const getWeather = (cityName) => {
         .toString()
         .padStart(2, "0")}:${sunriseMinutes.toString().padStart(2, "0")}`;
 
-      sunset.innerHTML = `Sunrise: ${sunsetHours
+      sunset.innerHTML = `Sunset: ${sunsetHours
         .toString()
         .padStart(2, "0")}:${sunsetMinutes.toString().padStart(2, "0")}`;
     })
