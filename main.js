@@ -21,6 +21,8 @@ import {
   weatherIcon18,
 } from "./dom-element.js";
 
+console.log(form);
+
 import {
   currentCity,
   getCurrentCity,
@@ -123,5 +125,3 @@ storageToArray();
 render();
 getWeather(getCurrentCity());
 getForecast(getCurrentCity());
-
-console.log(new Date.getTimezoneOffset());
