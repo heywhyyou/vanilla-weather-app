@@ -10,47 +10,27 @@ import {
   feelsLike,
   sunrise,
   sunset,
-  temp12,
-  temp15,
-  temp18,
-  feelsLike12,
-  feelsLike15,
-  feelsLike18,
-  weatherIcon12,
-  weatherIcon15,
-  weatherIcon18,
 } from "./dom-element.js";
 
 import {
   currentCity,
   getCurrentCity,
   storage,
-  storageToArray,
+  storageToSet,
 } from "./storage.js";
 
 import { getForecast, getWeather } from "./api.js";
 
-export const favs = new Array();
+export const favs = new Set();
 
 export const capitalize = (word) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
-const checkName = (array, searchString) => {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].name === searchString) {
-      return true;
-    }
-  }
-  return false;
-};
-
 const addToFavs = (event) => {
   try {
-    if (checkName(favs, city.textContent)) {
-      throw new Error("Город уже в избранном");
-    }
-    favs.push({ name: city.textContent });
+    favs.add(city.textContent);
+    console.log(favs);
     storage(favs);
     render(event);
   } catch (error) {
@@ -59,13 +39,11 @@ const addToFavs = (event) => {
 };
 
 const deleteFromStorage = (name) => {
-  let index = favs.findIndex(function (item) {
-    return item.name === name;
+  favs.forEach((item) => {
+    if (item === name) {
+      favs.delete(name);
+    }
   });
-
-  if (index !== -1) {
-    favs.splice(index, 1);
-  }
 };
 
 const removeFav = (event) => {
@@ -83,7 +61,7 @@ const render = (event) => {
   });
 
   favs.forEach(function (city) {
-    let newName = city.name;
+    let newName = city;
     let newFav = document.createElement("li");
     let newP = document.createElement("p");
     let newButton = document.createElement("button");
@@ -119,7 +97,7 @@ const favHandler = (e) => {
 form.addEventListener("submit", submitHandler);
 heart.addEventListener("click", addToFavs);
 
-storageToArray();
+storageToSet();
 render();
 getWeather(getCurrentCity());
 getForecast(getCurrentCity());

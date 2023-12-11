@@ -2,20 +2,11 @@ import { capitalize } from "./main.js";
 import {
   degrees,
   city,
-  temp12,
   weatherIcon,
-  feelsLike12,
   input,
-  weatherIcon12,
   feelsLike,
-  temp15,
   sunrise,
-  feelsLike15,
   sunset,
-  weatherIcon15,
-  temp18,
-  feelsLike18,
-  weatherIcon18,
 } from "./dom-element.js";
 
 const serverUrl = "https://api.openweathermap.org/data/2.5/weather";

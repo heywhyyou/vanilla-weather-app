@@ -1,21 +1,21 @@
 import { favs } from "./main.js";
 
-export const storage = (array) => {
+export const storage = (set) => {
   localStorage.setItem(
     "favCities",
-    array.map((item) => {
-      return item.name;
+    Array.from(set).map((item) => {
+      return item;
     })
   );
 };
 
-export const storageToArray = () => {
+export const storageToSet = () => {
   if (localStorage.getItem("favCities") === "") {
     return;
   }
   const newArr = localStorage.getItem("favCities").split(",");
   newArr.map((item) => {
-    favs.push({ name: item });
+    favs.add(item);
   });
 };
 
