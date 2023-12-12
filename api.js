@@ -13,69 +13,64 @@ const serverUrl = "https://api.openweathermap.org/data/2.5/weather";
 const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast";
 const apiKey = "ef115df48d80a2423e44afb52adf59da";
 
-export const getWeather = (cityName) => {
+export const getWeather = async (cityName) => {
   let url = `${serverUrl}?q=${capitalize(
     cityName
   )}&appid=${apiKey}&units=metric`;
-  fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      degrees.innerHTML = `${Math.round(data.main.temp)}&deg;`;
-      city.textContent = capitalize(cityName);
-      weatherIcon.innerHTML = `<image xlink:href='img/svg/${data.weather[0].icon}.svg' width='100%' height='100%' />`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    degrees.innerHTML = `${Math.round(data.main.temp)}&deg;`;
+    city.textContent = capitalize(cityName);
+    weatherIcon.innerHTML = `<image xlink:href='img/svg/${data.weather[0].icon}.svg' width='100%' height='100%' />`;
 
-      input.value = "";
+    input.value = "";
 
-      feelsLike.innerHTML = `Feels like: ${Math.round(
-        data.main.feels_like
-      )}&deg;`;
-      const myTimeOffset = new Date().getTimezoneOffset() * 60;
+    feelsLike.innerHTML = `Feels like: ${Math.round(
+      data.main.feels_like
+    )}&deg;`;
+    const myTimeOffset = new Date().getTimezoneOffset() * 60;
 
-      const sunriseInMillis =
-        (data.sys.sunrise + data.timezone + myTimeOffset) * 1000;
-      const sunsetInMillis =
-        (data.sys.sunset + data.timezone + myTimeOffset) * 1000;
+    const sunriseInMillis =
+      (data.sys.sunrise + data.timezone + myTimeOffset) * 1000;
+    const sunsetInMillis =
+      (data.sys.sunset + data.timezone + myTimeOffset) * 1000;
 
-      const sunriseDate = new Date(sunriseInMillis);
-      const sunsetDate = new Date(sunsetInMillis);
+    const sunriseDate = new Date(sunriseInMillis);
+    const sunsetDate = new Date(sunsetInMillis);
 
-      const sunriseHours = sunriseDate.getHours();
-      const sunsetHours = sunsetDate.getHours();
-      const sunriseMinutes = sunriseDate.getMinutes();
-      const sunsetMinutes = sunsetDate.getMinutes();
+    const sunriseHours = sunriseDate.getHours();
+    const sunsetHours = sunsetDate.getHours();
+    const sunriseMinutes = sunriseDate.getMinutes();
+    const sunsetMinutes = sunsetDate.getMinutes();
 
-      sunrise.innerHTML = `Sunrise: ${sunriseHours
-        .toString()
-        .padStart(2, "0")}:${sunriseMinutes.toString().padStart(2, "0")}`;
+    sunrise.innerHTML = `Sunrise: ${sunriseHours
+      .toString()
+      .padStart(2, "0")}:${sunriseMinutes.toString().padStart(2, "0")}`;
 
-      sunset.innerHTML = `Sunset: ${sunsetHours
-        .toString()
-        .padStart(2, "0")}:${sunsetMinutes.toString().padStart(2, "0")}`;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+    sunset.innerHTML = `Sunset: ${sunsetHours
+      .toString()
+      .padStart(2, "0")}:${sunsetMinutes.toString().padStart(2, "0")}`;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const getForecast = (cityName) => {
+export const getForecast = async (cityName) => {
   let url = `${forecastUrl}?q=${capitalize(
     cityName
   )}&appid=${apiKey}&units=metric&cnt=3`;
-  fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const detailsParent = document.querySelector(".details-wrapper-main");
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const detailsParent = document.querySelector(".details-wrapper-main");
 
-      while (detailsParent.firstChild) {
-        detailsParent.removeChild(detailsParent.firstChild);
-      }
+    while (detailsParent.firstChild) {
+      detailsParent.removeChild(detailsParent.firstChild);
+    }
 
-      data.list.forEach((item) => {
-        const html = `
+    data.list.forEach((item) => {
+      const html = `
           <div class="details-wrapper">
             <div class="temp-hours">
               <p>  ${item.dt_txt.slice(11, 16)} </p>
@@ -96,11 +91,9 @@ export const getForecast = (cityName) => {
           </div>
         `;
 
-        detailsParent.insertAdjacentHTML("beforeend", html);
-      });
-    })
-
-    .catch((error) => {
-      console.error(error);
+      detailsParent.insertAdjacentHTML("beforeend", html);
     });
+  } catch (error) {
+    console.error(error);
+  }
 };
