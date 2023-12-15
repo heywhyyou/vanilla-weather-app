@@ -38,12 +38,20 @@ const addToFavs = (event) => {
   }
 };
 
+// const deleteFromStorage = (name) => {
+//   favs.forEach((item) => {
+//     if (item === name) {
+//       favs.delete(name);
+//     }
+//   });
+// };
+
+// Recursion implemented here:
 const deleteFromStorage = (name) => {
-  favs.forEach((item) => {
-    if (item === name) {
-      favs.delete(name);
-    }
-  });
+  if (favs.has(name)) {
+    favs.delete(name);
+    deleteFromStorage(name);
+  }
 };
 
 const removeFav = (event) => {
