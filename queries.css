@@ -1,0 +1,9 @@
+@media (max-width: 620px) {
+  .fav__locations {
+    max-height: 769px;
+  }
+
+  .details-wrapper {
+    flex-direction: column;
+  }
+}
