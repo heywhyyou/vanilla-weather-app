@@ -1,9 +1,37 @@
 @media (max-width: 620px) {
+  .search {
+    height: 57px;
+  }
+
   .fav__locations {
     max-height: 769px;
   }
 
   .details-wrapper {
     flex-direction: column;
+  }
+
+  .app {
+    gap: 10px;
+  }
+
+  .fav__list li {
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .weather {
+    grid-column: 1 / -1;
+  }
+
+  .fav__header {
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
+    justify-content: center;
+  }
+
+  .fav__locations {
+    grid-column: 1 / -1;
   }
 }
