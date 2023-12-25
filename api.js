@@ -27,14 +27,14 @@ export const getWeather = async (cityName) => {
     input.value = "";
 
     feelsLike.innerHTML = `Feels like: ${Math.round(
-      data.main.feels_like
+      data.main.feels_like ?? 0
     )}&deg;`;
     const myTimeOffset = new Date().getTimezoneOffset() * 60;
 
     const sunriseInMillis =
-      (data.sys.sunrise + data.timezone + myTimeOffset) * 1000;
+      (data.sys.sunrise ?? 0 + data.timezone + myTimeOffset) * 1000;
     const sunsetInMillis =
-      (data.sys.sunset + data.timezone + myTimeOffset) * 1000;
+      (data.sys.sunset ?? 0 + data.timezone + myTimeOffset) * 1000;
 
     const sunriseDate = new Date(sunriseInMillis);
     const sunsetDate = new Date(sunsetInMillis);
