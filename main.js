@@ -1,16 +1,4 @@
-import {
-  input,
-  button,
-  degrees,
-  city,
-  weatherIcon,
-  form,
-  heart,
-  favList,
-  feelsLike,
-  sunrise,
-  sunset,
-} from "./dom-element.js";
+import { input, city, form, heart, favList } from "./dom-element.js";
 
 import {
   currentCity,
@@ -46,7 +34,6 @@ const addToFavs = (event) => {
 //   });
 // };
 
-// Recursion implemented here:
 const deleteFromStorage = (name) => {
   if (favs.has(name)) {
     favs.delete(name);
